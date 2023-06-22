@@ -13,7 +13,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    public static final String BASE_URL = "http://appspos.apdeliver.com/ItachoSGDevloper/api/apis/";
+    /*public static final String BASE_URL = "http://appspos.apdeliver.com/ItachoSGDevloper/api/apis/";*/
+    public static final String BASE_URL = "https://kkisan.karnataka.gov.in/KKISANQRAPI/api/";
     Retrofit retrofit;
     private static RetrofitClient instance;
 

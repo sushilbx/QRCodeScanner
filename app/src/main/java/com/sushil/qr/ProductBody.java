@@ -7,7 +7,13 @@ public class ProductBody {
     public String api_key;
     public String category_id;
     public String language_code;
-
+    public String branch_id;
+    public String device_type;
+    public String device_token;
+    public String price_type;
+    public String start_index;
+    public String device_id;
+    public int customer_id;
     public ProductBody(String ending_index, String customer_emailid, String customer_contact, String api_key, String category_id, String language_code, String branch_id, String device_type, String device_token, String price_type, String start_index, String device_id, int customer_id) {
         this.ending_index = ending_index;
         this.customer_emailid = customer_emailid;
@@ -24,11 +30,5 @@ public class ProductBody {
         this.customer_id = customer_id;
     }
 
-    public String branch_id;
-    public String device_type;
-    public String device_token;
-    public String price_type;
-    public String start_index;
-    public String device_id;
-    public int customer_id;
+
 }
