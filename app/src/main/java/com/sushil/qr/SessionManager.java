@@ -52,7 +52,7 @@ public class SessionManager {
     }
     public void logoutUser() {
         clearSession();
-        Intent i = new Intent(_context, LoginActivity.class);
+        Intent i = new Intent(_context, LogininActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         _context.startActivity(i);
 

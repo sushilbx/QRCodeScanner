@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d9ab07"
+    android:background="#c0ede5"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".SplashActivity">
@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Sedukathi"
-        android:textColor="@color/white"
+        android:text="Sadukthi"
+        android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -24,7 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Admin Panel"
-        android:textColor="@color/white"
+        android:text="Kisan QR Scanner"
+        android:textColor="@color/black"
         android:textSize="12dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/okkkk" />
+
 </LinearLayout>

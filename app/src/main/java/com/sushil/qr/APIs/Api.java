@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface Api {
     @POST("product_details")
@@ -21,7 +22,18 @@ public interface Api {
     /*    @Headers("Content-Type:application/x-www-form-urlencoded")
         @FormUrlEncoded*/
     @Headers("Content-Type: application/x-www-form-urlencoded")
+ /*   @FormUrlEncoded*/
     @POST("token")
-    Call<SessionModel> login(@Body LoginBody loginBody);
+    Call<SessionModel> login(
+           /* @Field("username") String username,
+            @Field("password") String password,
+            @Field("grant_type") String grant_type*/
+            @Body LoginBody loginBody);
+
+
+   /* @GET("professional/city-list/{state_id}")
+    Call<CityModel> city(
+            @Path("state_id") String state_id
+    );*/
 
 }

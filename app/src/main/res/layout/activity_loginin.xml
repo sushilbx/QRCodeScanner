@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LogininActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/llLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Hello, there"
+                android:textColor="@color/purple_700" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Welcome Back"
+                android:textColor="@color/purple_700"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/etPhoneLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:padding="10dp"
+                    app:cardCornerRadius="10dp">
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="#d7dbdb"
+                        android:drawableStart="@drawable/baseline_email_24"
+                        android:drawablePadding="20dp"
+                        android:hint="Enter Email'id"
+                        android:inputType="textEmailAddress"
+                        android:padding="10dp"
+                        android:textColor="@color/black" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:padding="10dp"
+                    app:cardCornerRadius="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="#d7dbdb"
+                        android:drawableStart="@drawable/ic_baseline_lock_24"
+                        android:drawablePadding="20dp"
+                        android:hint="Enter your password"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textColor="@color/black" />
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp">
+
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#035E89"
+                    android:buttonTint="#035E89"
+                    android:text="Remember me"
+                    android:textColor="#035E89"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvForgot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="90dp"
+                    android:layout_toEndOf="@+id/checkBox"
+                    android:padding="15dp"
+                    android:text="Forgot password"
+                    android:textColor="#035E89"
+
+                    >
+
+                </TextView>
+
+
+            </RelativeLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="30dp"
+                android:text="Login"
+                android:textAllCaps="false"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@color/lightBlack">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/purple_700" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+
+
+
+

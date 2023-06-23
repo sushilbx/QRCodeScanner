@@ -1,9 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<network-security-config>-->
+<!--    <base-config>-->
+<!--        <trust-anchors>-->
+<!--            <certificates src="system"/>-->
+<!--            <certificates src="user"/>-->
+<!--        </trust-anchors>-->
+<!--    </base-config>-->
+<!--</network-security-config>-->
+
+<!--<network-security-config xmlns:tools="http://schemas.android.com/tools"-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--<domain-config>-->
+<!--    <domain includeSubdomains="true">https://kkisan.karnataka.gov.in</domain>-->
+<!--    <trust-anchors>-->
+<!--        <certificates src="system" />-->
+<!--        <certificates src="user" />-->
+<!--    </trust-anchors>-->
+<!--</domain-config>-->
+<!--</network-security-config>-->
+
+<!--<network-security-config>-->
+<!--<domain-config cleartextTrafficPermitted="true">-->
+<!--    <domain includeSubdomains="true">kkisan.karnataka.gov.in</domain>-->
+<!--</domain-config>-->
+<!--</network-security-config>-->
+
 <network-security-config>
-    <base-config>
+    <base-config cleartextTrafficPermitted="true" />
+    <domain-config cleartextTrafficPermitted="true">
         <trust-anchors>
-            <certificates src="system"/>
-            <certificates src="user"/>
+<!--            <certificates src="@raw/xxxsolutionscom" />-->
+            <certificates src="system" />
+            <certificates src="user" />
         </trust-anchors>
-    </base-config>
+        <domain includeSubdomains="true">https://kkisan.karnataka.gov.in</domain>
+        <domain includeSubdomains="true">164.100.133.76</domain>
+    </domain-config>
 </network-security-config>
