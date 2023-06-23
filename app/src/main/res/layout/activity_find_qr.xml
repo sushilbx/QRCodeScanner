@@ -18,7 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/black" />
-
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Item : 1"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvQr"
         android:layout_width="match_parent"

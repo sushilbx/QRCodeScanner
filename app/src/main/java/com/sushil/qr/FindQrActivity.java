@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -56,9 +57,9 @@ public class FindQrActivity extends AppCompatActivity {
         sessionModel = sessionManager.getLoginSession();
         auth = "Bearer " + sessionModel.getAccess_token();
         qrCode = getIntent().getStringExtra("pass");
-        if (qrCode==null){
+        if (qrCode == null) {
             b.back.setTitle("Product");
-        }else {
+        } else {
             b.back.setTitle(qrCode.substring(qrCode.length() - 10));
             mainQr = qrCode.substring(qrCode.length() - 10);
             Log.e("Auth Find", auth);
@@ -73,10 +74,6 @@ public class FindQrActivity extends AppCompatActivity {
                 getData();
             }
         }
-
-
-
-
 
 
         b.back.setNavigationOnClickListener(new View.OnClickListener() {
@@ -97,6 +94,7 @@ public class FindQrActivity extends AppCompatActivity {
                 Log.e("QRRESPONSE", response);
                 Gson gson = new Gson();
                 SecondaryModel model = gson.fromJson(response, SecondaryModel.class);
+                b.total.setText(String.valueOf("Total Item : "+model.SecondaryLabelDetail.size()));
                 SecondaryAdapter secondaryAdapter = new SecondaryAdapter(model.SecondaryLabelDetail, context, qrCode);
                 b.rvQr.setAdapter(secondaryAdapter);
             }
@@ -146,24 +144,28 @@ public class FindQrActivity extends AppCompatActivity {
                 Log.e("QRCode", model.QRCode);
                 Log.e("ProductCode", model.ProductCode);
                 Log.e("BatchNumber", model.BatchNumber);
+                if (model.QRCode == null) {
+                    Toast.makeText(FindQrActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                }else {
+                    b.tvQr.setText(model.QRCode);
+                    b.tvProductCode.setText(model.ProductCode);
+                    b.tvBatchNo.setText(model.BatchNumber);
+                    b.tvSerialNo.setText(model.SerialNumber);
+                    b.tvMfg.setText(model.ManufactureDate);
+                    b.tvExp.setText(model.ExpiryDate);
 
-                b.tvQr.setText(model.QRCode);
-                b.tvProductCode.setText(model.ProductCode);
-                b.tvBatchNo.setText(model.BatchNumber);
-                b.tvSerialNo.setText(model.SerialNumber);
-                b.tvMfg.setText(model.ManufactureDate);
-                b.tvExp.setText(model.ExpiryDate);
+                    b.mbNext.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(FindQrActivity.this, ProductDetailsQrActivity.class);
+                            intent.putExtra("productCode", model.ProductCode);
+                            intent.putExtra("pass", qrCode);
 
-                b.mbNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(FindQrActivity.this, ProductDetailsQrActivity.class);
-                        intent.putExtra("productCode", model.ProductCode);
-                        intent.putExtra("pass", qrCode);
+                            startActivity(intent);
+                        }
+                    });
+                }
 
-                        startActivity(intent);
-                    }
-                });
 
             }
         };
@@ -196,4 +198,5 @@ public class FindQrActivity extends AppCompatActivity {
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleton.myGetMySingleton(FindQrActivity.this).myAddToRequest(stringRequest);
     }
+
 }
