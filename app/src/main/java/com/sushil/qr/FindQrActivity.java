@@ -55,24 +55,30 @@ public class FindQrActivity extends AppCompatActivity {
         sessionManager = new SessionManager(FindQrActivity.this);
         sessionModel = sessionManager.getLoginSession();
         auth = "Bearer " + sessionModel.getAccess_token();
-
-
         qrCode = getIntent().getStringExtra("pass");
-        b.back.setTitle(qrCode.substring(qrCode.length() - 10));
-        mainQr = qrCode.substring(qrCode.length() - 10);
-        Log.e("Auth Find", auth);
-        Log.e("QRCODE", qrCode);
-
-
-        if (qrCode.substring(0, 2).equalsIgnoreCase("00")) {
-            b.llQr.setVisibility(View.GONE);
-            b.rvQr.setVisibility(View.VISIBLE);
-            getList();
-        } else if (qrCode.substring(0, 2).equalsIgnoreCase("01")) {
-            b.llQr.setVisibility(View.VISIBLE);
-            b.rvQr.setVisibility(View.GONE);
-            getData();
+        if (qrCode==null){
+            b.back.setTitle("Product");
+        }else {
+            b.back.setTitle(qrCode.substring(qrCode.length() - 10));
+            mainQr = qrCode.substring(qrCode.length() - 10);
+            Log.e("Auth Find", auth);
+            Log.e("QRCODE", qrCode);
+            if (qrCode.substring(0, 2).equalsIgnoreCase("00")) {
+                b.llQr.setVisibility(View.GONE);
+                b.rvQr.setVisibility(View.VISIBLE);
+                getList();
+            } else if (qrCode.substring(0, 2).equalsIgnoreCase("01")) {
+                b.llQr.setVisibility(View.VISIBLE);
+                b.rvQr.setVisibility(View.GONE);
+                getData();
+            }
         }
+
+
+
+
+
+
         b.back.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +97,7 @@ public class FindQrActivity extends AppCompatActivity {
                 Log.e("QRRESPONSE", response);
                 Gson gson = new Gson();
                 SecondaryModel model = gson.fromJson(response, SecondaryModel.class);
-                SecondaryAdapter secondaryAdapter = new SecondaryAdapter(model.SecondaryLabelDetail, context);
+                SecondaryAdapter secondaryAdapter = new SecondaryAdapter(model.SecondaryLabelDetail, context, qrCode);
                 b.rvQr.setAdapter(secondaryAdapter);
             }
         };
@@ -148,14 +154,16 @@ public class FindQrActivity extends AppCompatActivity {
                 b.tvMfg.setText(model.ManufactureDate);
                 b.tvExp.setText(model.ExpiryDate);
 
-              /*  b.mbNext.setOnClickListener(new View.OnClickListener() {
+                b.mbNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(FindQrActivity.this, ProductDetailsActivity.class);
+                        Intent intent = new Intent(FindQrActivity.this, ProductDetailsQrActivity.class);
                         intent.putExtra("productCode", model.ProductCode);
+                        intent.putExtra("pass", qrCode);
+
                         startActivity(intent);
                     }
-                });*/
+                });
 
             }
         };
