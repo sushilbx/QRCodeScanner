@@ -94,9 +94,19 @@ public class FindQrActivity extends AppCompatActivity {
                 Log.e("QRRESPONSE", response);
                 Gson gson = new Gson();
                 SecondaryModel model = gson.fromJson(response, SecondaryModel.class);
-                b.total.setText(String.valueOf("Total Item : "+model.SecondaryLabelDetail.size()));
-                SecondaryAdapter secondaryAdapter = new SecondaryAdapter(model.SecondaryLabelDetail, context, qrCode);
-                b.rvQr.setAdapter(secondaryAdapter);
+                if (model.SecondaryLabelDetail.size() == 0) {
+                    Toast.makeText(FindQrActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                    b.llData.setVisibility(View.GONE);
+                    b.llNotData.setVisibility(View.VISIBLE);
+                } else {
+                    b.llData.setVisibility(View.VISIBLE);
+                    b.llNotData.setVisibility(View.GONE);
+                    b.total.setText(String.valueOf("Total Item : " + model.SecondaryLabelDetail.size()));
+                    SecondaryAdapter secondaryAdapter = new SecondaryAdapter(model.SecondaryLabelDetail, context, qrCode);
+                    b.rvQr.setAdapter(secondaryAdapter);
+                }
+
+
             }
         };
 
@@ -138,15 +148,18 @@ public class FindQrActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 QrModel model = gson.fromJson(response, QrModel.class);
 
-               /* SecondaryModel model = gson.fromJson(response, SecondaryModel.class);
-                SecondaryAdapter secondaryAdapter = new SecondaryAdapter(model.SecondaryLabelDetail, context);
-                b.rvQr.setAdapter(secondaryAdapter);*/
-                Log.e("QRCode", model.QRCode);
-                Log.e("ProductCode", model.ProductCode);
-                Log.e("BatchNumber", model.BatchNumber);
+
+                Log.e("QRCode", "" + model.QRCode);
+                Log.e("ProductCode", "" + model.ProductCode);
+                Log.e("BatchNumber", "" + model.BatchNumber);
                 if (model.QRCode == null) {
                     Toast.makeText(FindQrActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
-                }else {
+                    b.llData.setVisibility(View.GONE);
+                    b.llNotData.setVisibility(View.VISIBLE);
+
+                } else {
+                    b.llData.setVisibility(View.VISIBLE);
+                    b.llNotData.setVisibility(View.GONE);
                     b.tvQr.setText(model.QRCode);
                     b.tvProductCode.setText(model.ProductCode);
                     b.tvBatchNo.setText(model.BatchNumber);
